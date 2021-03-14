@@ -78,7 +78,7 @@ function Profile() {
                             className={
                                 classes.title
                         }>
-                            News
+                            Home
                         </Typography>
                         <Button color="inherit"></Button>
                     </Toolbar>
