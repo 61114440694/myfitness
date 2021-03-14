@@ -6,9 +6,10 @@ import {BrowserRouter,Router,Route} from 'react-router-dom'
 function App() {
     return (
         <BrowserRouter>
-                    <Route  exact={true} path="/" component={Profile}></Route>
+                    <Route  exact={true} path="/" component={Home}></Route>
+                    <Route  exact={true} path="/Home" component={Home}></Route>
                     <Route  path="/Login" component={Login}></Route>
-                    <Route  path="/Profile" component={Home} ></Route>
+                    <Route  path="/Profile" component={Profile} ></Route>
                     <Route  path="/Register" component={Register} ></Route>
         </BrowserRouter>
     )
