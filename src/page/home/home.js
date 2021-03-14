@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
-
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 
 
@@ -22,14 +22,21 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+      flexGrow: 1,
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+    menuButton: {
+      marginRight: theme.spacing(2),
     },
-}));
+    title: {
+      flexGrow: 1,
+    },
+    root: {
+        '& > svg': {
+          margin: theme.spacing(2),
+        },
+      },
+  }));
+  
 
 
 
@@ -38,22 +45,22 @@ function Home() {
     return (
         <div>
             <div className={classes.root}>
-                <AppBar position="static" style={{ backgroundColor: "#d35400" }}>
+                <AppBar position="static" style={{backgroundColor:"#d35400"}} >
                     <Toolbar>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            News
+                            Srikai Fitness
                         </Typography>
-                        <Button color="inherit"></Button>
+                        <Button color="inherit">Login</Button>
                     </Toolbar>
                 </AppBar>
             </div>
             <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
-                height="200"
+                height="600"
                 image="https://www.sarakadeelite.com/wp-content/uploads/2020/06/fitness-first-open2.jpg"
                 title="Contemplative Reptile"
             />
@@ -260,9 +267,9 @@ function Home() {
                     </Grid>
 
                 </Grid>
-                
+
             </Container>
-            
+
         </div >
     )
 }
