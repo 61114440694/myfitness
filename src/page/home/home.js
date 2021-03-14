@@ -12,16 +12,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
-import Avatar from '@material-ui/core/Avatar';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-// import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+
+
 
 
 
@@ -174,7 +168,7 @@ function Home() {
                 </Grid><br></br><br></br><br></br>
 
                 <Grid container spacing={3}>
-                    <Grid item xs={12} xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Typography gutterBottom variant="h5" component="h2">
                             ติดต่อเรา
                         </Typography>
@@ -201,7 +195,7 @@ function Home() {
                          </Button>
 
                     </Grid>
-                    <Grid item xs={12} xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Card className={classes.root} color="#2f3640">
                             <CardActionArea style={{ backgroundImage: "../home/img/fitness.jpg" }}>
                                 <CardContent >
@@ -223,7 +217,7 @@ function Home() {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} xs={3}>
+                    <Grid item xs={12} md={3}>
                         <Card className={classes.root} color="#2f3640">
                             <CardActionArea >
                                 <CardContent >
@@ -245,7 +239,7 @@ function Home() {
                             </CardActions>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} xs={3} >
+                    <Grid item xs={12} md={3} >
                         <CardActionArea >
                             <CardContent>
                                 <Typography gutterBottom variant="h4" component="h2">
@@ -266,7 +260,7 @@ function Home() {
                     </Grid>
 
                 </Grid>
-
+                
             </Container>
             
         </div >
