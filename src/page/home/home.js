@@ -53,7 +53,7 @@ function Home() {
                         <Typography variant="h6" className={classes.title}>
                             Srikai Fitness
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit" href="../login/login" >Login</Button>
                     </Toolbar>
                 </AppBar>
             </div>
