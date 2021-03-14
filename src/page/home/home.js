@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,37 +15,90 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import SvgIcon from '@material-ui/core/SvgIcon';
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Tdee,ResponseTdee,Bmr } from "../home/tdee";
 
 
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     root: {
         '& > svg': {
-          margin: theme.spacing(2),
+            margin: theme.spacing(2),
         },
-      },
-  }));
-  
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
+
 
 
 
 function Home() {
     const classes = useStyles()
+
+    const [gender, setgender] = useState("")
+    const [level, setlevel] = useState("")
+    const [height, setheight] = useState("")
+    const [weight, setweight] = useState("")
+    const [age, setage] = useState("")
+    const [tdee, settdee] = useState(0)
+    const [bmr, setbmr] = useState(0)
+  
+    
+
+    // setTimeout(() => {
+        // const tdee = ResponseTdee()
+        // const bmr = Bmr()
+        // setbmr(bmr)
+        // settdee(tdee)
+    // }, 500);
+    
+    
+    
+    function senData() {
+        const data = {
+            datagender: gender,
+            datalevel: level,
+            dataheight: height,
+            dataweight: weight,
+            dataage: age,
+        }
+        
+        Tdee(data)
+        
+
+    
+    }
+
     return (
         <div>
             <div className={classes.root}>
-                <AppBar position="static" style={{backgroundColor:"#d35400"}} >
+                <AppBar position="static" style={{ backgroundColor: "#d35400" }} >
                     <Toolbar>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon />
@@ -94,7 +147,7 @@ function Home() {
                                             variant="contained"
                                             color=""
                                             fullWidth>
-                                            สมัค
+                                            สมัคร
                                          </Button>
                                     </Grid>
                                 </Grid>
@@ -129,7 +182,7 @@ function Home() {
                                             variant="contained"
                                             color=""
                                             fullWidth>
-                                            สมัค
+                                            สมัคร
                                          </Button>
                                     </Grid>
                                 </Grid>
@@ -164,7 +217,7 @@ function Home() {
                                             variant="contained"
                                             color=""
                                             fullWidth>
-                                            สมัค
+                                            สมัคร
                                          </Button>
                                     </Grid>
                                 </Grid>
@@ -266,6 +319,102 @@ function Home() {
                         </CardActionArea>
                     </Grid>
 
+                </Grid>
+                <Grid container>
+
+                    <Grid item xs={12} md={6}>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={gender}
+                                onChange={(e) => setgender(e.target.value)}
+                            >
+                                <MenuItem value="male">ชาย</MenuItem>
+                                <MenuItem value="female">หญิง</MenuItem>
+
+                            </Select>
+                        </FormControl>
+                            {/* <form className={classes.root} noValidate autoComplete="off"> */}
+                                <TextField
+                                    id="standard-basic"
+                                    value={height}
+                                    label="ส่วนสูง"
+                                    onChange={(e) => setheight(e.target.value)}
+                                />
+                            {/* </form> */}
+                            {/* <form className={classes.root} noValidate autoComplete="off"> */}
+                                <TextField
+                                    id="standard-basic"
+                                    value={weight}
+                                    label="น้ำหนัก"
+                                    onChange={(e) => setweight(e.target.value)}
+                                />
+                            {/* </form> */}
+                            {/* <form className={classes.root} noValidate autoComplete="off"> */}
+                                <TextField
+                                    id="standard-basic"
+                                    value={age}
+                                    label="อายุ"
+                                    onChange={(e) => setage(e.target.value)}
+                                />
+                            {/* </form> */}
+                            <FormControl className={classes.formControl}>
+                                <InputLabel id="demo-simple-select-label">ระดับ</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={level}
+                                    onChange={(e) => setlevel(e.target.value)}
+                                >
+                                    <MenuItem value="level_1">ไม่ออกกำลังกาย</MenuItem>
+                                    <MenuItem value="level_2">ออกกำลังกายเบาๆ</MenuItem>
+                                    <MenuItem value="level_3">ออกกำลังกายปานกลาง</MenuItem>
+                                    <MenuItem value="level_4">ออกกำลังกายหนัก</MenuItem>
+                                    <MenuItem value="level_5">ออกกำลังกายหนักมาก</MenuItem>
+                                </Select>
+                            </FormControl><br></br>
+                            <Button
+                                style={{ backgroundColor: "#d35400", marginLeft: "20" }}
+                                variant="contained"
+                                onClick={senData}
+                            >
+                                คำนวณ
+                         </Button>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                    {/* <form className={classes.root} noValidate autoComplete="off"> */}
+                                <TextField
+                                    id="standard-basic"
+                                    value={height}
+                                    label="ส่วนสูง"
+                                    // onChange={(e) => setheight(e.target.value)}
+                                />
+                            {/* </form> */}
+                            {/* <form className={classes.root} noValidate autoComplete="off"> */}
+                                <TextField
+                                    id="standard-basic"
+                                    value={weight}
+                                    label="น้ำหนัก"
+                                    // onChange={(e) => setweight(e.target.value)}
+                                />
+                            {/* </form> */}
+                            <Button
+                                style={{ backgroundColor: "#d35400", marginLeft: "20" }}
+                                variant="contained"
+                                color=""
+                                onClick={senData()}
+                            >
+                                คำนวณ
+                         </Button>
+
+                         <h2>
+                             {tdee}
+                         </h2>
+                         <h2>{bmr}</h2>
+
+                    </Grid>
                 </Grid>
 
             </Container>
