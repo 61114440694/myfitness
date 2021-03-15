@@ -28,6 +28,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Tdee, ResponseTdee, Bmr } from "../home/tdee";
 import { ResponseBmi, Bmi } from "../home/bmi";
+import { useAuth } from "../contexts/AuthContext";
+import { useHistory } from "react-router";
+import { Alert } from "bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
+function Main() {
   const classes = useStyles();
 
   const [gender, setgender] = useState("");
@@ -66,6 +69,10 @@ function Home() {
   const [heightbmi, setheightbmi] = useState("");
   const [weightbmi, setweightbmi] = useState("");
   const [bmi, setbmi] = useState(0);
+
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory()
 
   function senData(event) {
     event.preventDefault();
@@ -95,6 +102,17 @@ function Home() {
     }, 500);
   }
 
+  async function handleLogout (){
+    setError('')
+
+    try{
+      await logout()
+      history.pushState('/login')
+    } catch {
+      setError('Failed to log out')
+    }
+  }
+
   return (
     <div>
       <div className={classes.root}>
@@ -105,14 +123,15 @@ function Home() {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
-              href='/'
+              href='#'
             >
               <MenuIcon />
             </IconButton>
+            {error && <Alert variant="danger">{error}</Alert>}
             <Typography variant="h6" className={classes.title}>
-              SRIKAI FITNESS
+              {currentUser.email}
             </Typography>
-            <Button variant="link" href="../login">Login</Button>
+            <Button variant="link" onClick={handleLogout}>Log Out</Button>
           </Toolbar>
         </AppBar>
       </div>
@@ -151,7 +170,6 @@ function Home() {
                       variant="contained"
                       color=""
                       fullWidth
-                      href="./login"
                     >
                       สมัคร
                     </Button>
@@ -186,7 +204,6 @@ function Home() {
                       variant="contained"
                       color=""
                       fullWidth
-                      href="./login"
                     >
                       สมัคร
                     </Button>
@@ -221,7 +238,6 @@ function Home() {
                       variant="contained"
                       color=""
                       fullWidth
-                      href="./login"
                     >
                       สมัคร
                     </Button>
@@ -451,4 +467,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Main;
