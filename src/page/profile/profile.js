@@ -23,7 +23,10 @@ import Avatar from '@material-ui/core/Avatar';
 import {deepOrange, deepPurple} from '@material-ui/core/colors';
 import {MDBCardBody} from 'mdbreact';
 import {Row, Col} from 'react-bootstrap';
-import { SystemUpdate } from '@material-ui/icons';
+import HomeIcon from '@material-ui/icons/Home';
+import { useHistory } from "react-router-dom";
+
+
 // import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 
@@ -40,45 +43,42 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Profile() {
+    const history = useHistory();
     const classes = useStyles()
-    const [email , setEmail] = React.useState("worawit.pa.61@ubu.ac.th");
+    const [email , setEmail] = React.useState("sakkarin.ha.61@ubu.ac.th");
     const [num , setNum] = React.useState(false);
-    const [fname, setFname] = React.useState("worawit");
-    const [lname, setLname] = React.useState("panomroengchai");
-    const [dis, setDis] = React.useState("มะเร็ง");
+    const [fname, setFname] = React.useState("sakkarin");
+    const [lname, setLname] = React.useState("harnchanaphol");
+    const [dis, setDis] = React.useState("-");
     const [age , setAge] = React.useState(20);
     const [height , setHeight] = React.useState(175);
     const [weight, setWeight] = React.useState(60);
     const [bloodGroup, setBloodGroup] = React.useState("B");
     const [BMI , setBMI] = React.useState(Math.round(weight / ((height/100)**2)));
 
+
     const bmiCal = ()=>{
         let m = Math.round(weight / ((height/100)**2))
         setBMI(m)
     }
+
+    const back = () => {
+        history.push("/Home");
+    }
+
+    
     return (
         <div>
             <div className={
                 classes.root
             }>
-                <AppBar position="static"
-                    style={
-                        {backgroundColor: "#d35400"}
-                }>
+                <AppBar position="static" style={{backgroundColor: "#d35400"}}>
                     <Toolbar>
-                        <IconButton edge="start"
-                            className={
-                                classes.menuButton
-                            }
-                            color="inherit"
-                            aria-label="menu">
-                            <MenuIcon/>
+                        <IconButton edge="start"className={classes.menuButton} color="inherit" aria-label="back" onClick={() => back()}>
+                            <HomeIcon/>
                         </IconButton>
-                        <Typography variant="h6"
-                            className={
-                                classes.title
-                        }>
-                            Home
+                        <Typography variant="h6"className={classes.title}>
+                            News
                         </Typography>
                         <Button color="inherit"></Button>
                     </Toolbar>
